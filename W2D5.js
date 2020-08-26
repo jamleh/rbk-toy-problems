@@ -29,11 +29,40 @@ and you invoke the function with your guess -- if you and the function are think
  If you were asked to change the upper bound to some other number (e.g. 7), you should only have to make one change. 
  Modify guessMyNumber so that if the guess is incorrect, guessMyNumber includes the correct guess in its output, 
   e.g. 'Nope! The correct number was: X' (where X would have been the correct number).
- 
+ */
+  function guessMyNumber(n,upperBound) { 
+ var num=randInt(upperBound);
+ if (n > upperBound) { 
+ return 'Out of bounds! Please try a number between 0 and 5.'; 
+ } else if (n === num) { 
+ return 'You guessed my number!' +n; 
+ } 
+ return "Nope! That wasn't it! the number is "+ num ; 
+ } 
+ function randInt(n) { 
+ return Math.floor(Math.random() * (n + 1)) 
+ }
+ console.log(guessMyNumber(5,10));
+ /*
 2. At present, the guessing game picks a new random number every time it is 'played' (invoked). 
 Now that you know how to make information persistent between function invocations, 
 change the guessing game so that it picks a random number once and allows you to guess until you get the correct answer.
+ */
+ function guessMyNumber(n,upperBound) {
+    if(num==null) var num=randInt(upperBound);
 
+ if (n > upperBound) { 
+ return 'Out of bounds! Please try a number between 0 and 5.'; 
+ } else if (n === num) { 
+ return 'You guessed my number!' +n; 
+ } 
+ return guessMyNumber(upperBound-1,upperBound,num) ; 
+ } 
+ function randInt(n) { 
+ return Math.floor(Math.random() * (n + 1)) 
+ }
+ console.log(guessMyNumber(5,10))
+ /*
 3.it would be really cool if, after the answer was guessed, the message included the number of guesses 
 it had taken to find the answer; for example, 'You guessed my number in 3 guesses.'
 
@@ -55,7 +84,7 @@ include in the message something that indicates that a new high score has been s
 You may want to increase the upperBound on the guess.
 
 .All of the following exercises involve augmenting the guessMyNumber function.
-/*
+/**/
 
 // Your code is here
 
